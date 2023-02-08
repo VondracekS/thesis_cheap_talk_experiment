@@ -1,0 +1,8 @@
+# pycharm
+.idea/
+
+# R project
+/workflow_scripts/Thesis.Rproj
+
+# Literature
+/literature
