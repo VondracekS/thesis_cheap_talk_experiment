@@ -2,7 +2,7 @@
 .idea/
 
 # R project
-/workflow_scripts/Thesis.Rproj
+Thesis.Rproj
 
 # Literature
 /literature
