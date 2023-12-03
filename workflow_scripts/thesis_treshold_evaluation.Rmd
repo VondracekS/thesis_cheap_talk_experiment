@@ -1,0 +1,48 @@
+---
+title: "treshold_evaluation"
+author: "S Vondracek"
+date: "`r Sys.Date()`"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(lme4)
+library(flexplot)
+library(dplyr)
+```
+
+```{r}
+data_long_actions = read.csv("../data/data_processed/full_data_long.csv") %>% select(-X)
+```
+
+```{r}
+data_long_actions %>% mutate(value = value - 1) -> data_long_actions
+```
+
+```{r}
+data_long_actions %>% mutate(id = paste0(id, "_", compliant)) -> data_long_actions
+```
+
+```{r}
+data_long_actions %>% 
+  glm(data = .,
+      formula = value ~ as_factor(variable) + treatment + cost, family="binomial") %>% summary()
+```
+```{r}
+data_long_actions %>%
+  filter(variable %in% c('p_choices', 'p_choices_ca')) %>% 
+  glm(data = ., formula = value ~ cost + treatment) %>% summary()
+```
+
+```{r}
+
+```
+
+
+
+
+

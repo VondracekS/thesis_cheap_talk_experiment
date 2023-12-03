@@ -1,0 +1,4 @@
+"0","# load the data (preprocessed in python)"
+"0","experiment_simulation <- read.csv("
+"0","  ""../data/data_processed/gameplay_full_cmpliant.csv"") %>% "
+"0","  select(-""X"")"

@@ -1,0 +1,8 @@
+"0","experiment_simulation %>% "
+"0","  glmer(data = ., formula = pareto ~ treatment + cost + opp +  correct + "
+"0","          p_choices + payoff + correct +(1|id), "
+"0","        family=""binomial"") -> logistic_pareto"
+"2","Warning: Model failed to converge with max|grad| = 0.00503351 (tol = 0.002, component 1)"
+"2","Warning: Model is nearly unidentifiable: very large eigenvalue
+ - Rescale variables?;Model is nearly unidentifiable: large eigenvalue ratio
+ - Rescale variables?"

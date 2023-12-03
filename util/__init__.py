@@ -1,1 +1,1 @@
-from util.util import DataWranglingUtils
+from util.data_wrangling_utils import DataWranglingUtils

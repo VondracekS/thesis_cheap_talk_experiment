@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+<script src="lib/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="lib/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="lib/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="lib/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="lib/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="lib/kePrint-0.0.1/kePrint.js"></script>
+<link href="lib/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+</head>
+<body>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;">   </th>
+   <th style="text-align:center;"> baseline </th>
+   <th style="text-align:center;"> fixed_slopes_ommited </th>
+   <th style="text-align:center;"> fixed_slopes </th>
+   <th style="text-align:center;"> fixed_slopes_full </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> (Intercept) </td>
+   <td style="text-align:center;"> 164.983 </td>
+   <td style="text-align:center;"> 185.496 </td>
+   <td style="text-align:center;"> 124.658 </td>
+   <td style="text-align:center;"> 139.300 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:center;"> (1.640) </td>
+   <td style="text-align:center;"> (1.899) </td>
+   <td style="text-align:center;"> (1.931) </td>
+   <td style="text-align:center;"> (2.085) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> treatment </td>
+   <td style="text-align:center;">  </td>
+   <td style="text-align:center;"> 13.637 </td>
+   <td style="text-align:center;"> 13.654 </td>
+   <td style="text-align:center;"> 11.730 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:center;">  </td>
+   <td style="text-align:center;"> (2.509) </td>
+   <td style="text-align:center;"> (2.548) </td>
+   <td style="text-align:center;"> (2.744) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> cost </td>
+   <td style="text-align:center;">  </td>
+   <td style="text-align:center;"> −0.282 </td>
+   <td style="text-align:center;"> −0.284 </td>
+   <td style="text-align:center;"> −0.295 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:center;">  </td>
+   <td style="text-align:center;"> (0.002) </td>
+   <td style="text-align:center;"> (0.002) </td>
+   <td style="text-align:center;"> (0.002) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> opp </td>
+   <td style="text-align:center;">  </td>
+   <td style="text-align:center;">  </td>
+   <td style="text-align:center;"> 0.610 </td>
+   <td style="text-align:center;"> 0.638 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:center;">  </td>
+   <td style="text-align:center;">  </td>
+   <td style="text-align:center;"> (0.002) </td>
+   <td style="text-align:center;"> (0.002) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> correct </td>
+   <td style="text-align:center;">  </td>
+   <td style="text-align:center;">  </td>
+   <td style="text-align:center;">  </td>
+   <td style="text-align:center;"> −20.076 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:center;">  </td>
+   <td style="text-align:center;">  </td>
+   <td style="text-align:center;">  </td>
+   <td style="text-align:center;"> (0.257) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> SD (Intercept id) </td>
+   <td style="text-align:center;"> 10.203 </td>
+   <td style="text-align:center;"> 7.724 </td>
+   <td style="text-align:center;"> 7.862 </td>
+   <td style="text-align:center;"> 8.472 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;box-shadow: 0px 1.5px"> SD (Observations) </td>
+   <td style="text-align:center;box-shadow: 0px 1.5px"> 60.187 </td>
+   <td style="text-align:center;box-shadow: 0px 1.5px"> 57.960 </td>
+   <td style="text-align:center;box-shadow: 0px 1.5px"> 46.157 </td>
+   <td style="text-align:center;box-shadow: 0px 1.5px"> 45.430 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Num.Obs. </td>
+   <td style="text-align:center;"> 190000 </td>
+   <td style="text-align:center;"> 190000 </td>
+   <td style="text-align:center;"> 190000 </td>
+   <td style="text-align:center;"> 190000 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> R2 Marg. </td>
+   <td style="text-align:center;"> 0.000 </td>
+   <td style="text-align:center;"> 0.083 </td>
+   <td style="text-align:center;"> 0.412 </td>
+   <td style="text-align:center;"> 0.430 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> R2 Cond. </td>
+   <td style="text-align:center;"> 0.028 </td>
+   <td style="text-align:center;"> 0.099 </td>
+   <td style="text-align:center;"> 0.429 </td>
+   <td style="text-align:center;"> 0.449 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> AIC </td>
+   <td style="text-align:center;"> 2096424.9 </td>
+   <td style="text-align:center;"> 2082088.9 </td>
+   <td style="text-align:center;"> 1995588.4 </td>
+   <td style="text-align:center;"> 1989565.4 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> BIC </td>
+   <td style="text-align:center;"> 2096455.4 </td>
+   <td style="text-align:center;"> 2082139.6 </td>
+   <td style="text-align:center;"> 1995649.3 </td>
+   <td style="text-align:center;"> 1989636.5 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> ICC </td>
+   <td style="text-align:center;"> 0.0 </td>
+   <td style="text-align:center;"> 0.0 </td>
+   <td style="text-align:center;"> 0.0 </td>
+   <td style="text-align:center;"> 0.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> RMSE </td>
+   <td style="text-align:center;"> 60.18 </td>
+   <td style="text-align:center;"> 57.95 </td>
+   <td style="text-align:center;"> 46.15 </td>
+   <td style="text-align:center;"> 45.42 </td>
+  </tr>
+</tbody>
+</table> <script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [["$","$"]]}})</script><script async src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

@@ -1,0 +1,245 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% I, the copyright holder of this work, release this work into the
+%% public domain. This applies worldwide. In some countries this may
+%% not be legally possible; if so: I grant anyone the right to use
+%% this work for any purpose, without any conditions, unless such
+%% conditions are required by law.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[
+  digital, %% The `digital` option enables the default options for the
+           %% digital version of a document. Replace with `printed`
+           %% to enable the default options for the printed version
+           %% of a document.
+%%  color,   %% Uncomment these lines (by removing the %% at the
+%%           %% beginning) to use color in the printed version of your
+%%           %% document
+  twoside, %% The `twoside` option enables double-sided typesetting.
+           %% Use at least 120 g/m² paper to prevent show-through.
+           %% Replace with `oneside` to use one-sided typesetting;
+           %% use only if you don’t have access to a double-sided
+           %% printer, or if one-sided typesetting is a formal
+           %% requirement at your faculty.
+  lof,     %% The `lof` option prints the List of Figures. Replace
+           %% with `nolof` to hide the List of Figures.
+  lot,     %% The `lot` option prints the List of Tables. Replace
+           %% with `nolot` to hide the List of Tables.
+]{fithesis4}
+%% The following section sets up the locales used in the thesis.
+\usepackage[resetfonts]{cmap} %% We need to load the T2A font encoding
+\usepackage[T1,T2A]{fontenc}  %% to use the Cyrillic fonts with Russian texts.
+\usepackage[
+  main=english %% By using `czech` or `slovak` as the main locale
+                %% instead of `english`, you can typeset the thesis
+                %% in either Czech or Slovak, respectively.
+
+
+\thesissetup{
+    date               = \the\year/\the\month/\the\day,
+    autoLayout         = false,
+    university         = mu,
+    faculty            = econ,
+    type               = bc,
+    programme          = NA,
+    field              = Applied Econometrics,
+    department         = Department of Economics,
+    author             = Štěpán Vondráček,
+    gender             = m,
+    advisor            = {doc. Ondřej Krčál, PhD.},
+    extra              = {
+      advisorCsGenitiv = Ondřeje Krčála,
+      advisorSkGenitiv = Ondřeje Krčála,
+    },
+    title              = The Economic Value of LaTeX,
+    TeXtitle           = The Economic Value of \LaTeX,
+    keywords           = {keyword1, keyword2, ...},
+    TeXkeywords        = {keyword1, keyword2, \ldots},
+    abstract           = {%
+      This is the abstract of my thesis, which can
+        span multiple paragraphs.
+    },
+    thanks             = {%
+      These are the acknowledgements for my thesis, which can
+
+      span multiple paragraphs.
+    },
+    bib                = example.bib,
+    %% Uncomment the following line (by removing the %% at the
+    %% beginning) and replace `assignment.pdf` with the filename
+    %% of your scanned thesis assignment.
+%%    assignment         = assignment.pdf,
+    %% The following keys are only useful, when you're using a
+    %% locale other than English. You can safely omit them in an
+    %% English thesis.
+    programmeEn        = NA,
+    fieldEn            = Applied Econometrics,
+    departmentEn       = Department of Finance,
+    titleEn            = The Economic Value of LaTeX,
+    TeXtitleEn         = The Economic Value of \LaTeX,
+    keywordsEn         = {keyword1, keyword2, ...},
+    TeXkeywordsEn      = {keyword1, keyword2, \ldots},
+    abstractEn         = {%
+      This is the English abstract of my thesis, which can
+
+      span multiple paragraphs.
+    },
+    %% The following key is only useful when you are writing a
+    %% doctoral thesis. You can safely omit it in other theses.
+    extra              = {
+      summary          = {%
+        This is the summary of my thesis, which should
+
+        not be very long.
+      },
+    },
+}
+\usepackage{makeidx}      %% The `makeidx` package contains
+\makeindex                %% helper commands for index typesetting.
+\usepackage[acronym]{glossaries}          %% The `glossaries` package
+\renewcommand*\glspostdescription{\hfill} %% contains helper commands
+\makenoidxglossaries                      %% and lists of abbreviations.
+%% These additional packages are used within the document:
+\usepackage{paralist} %% Compact list environments
+\usepackage{amsmath}  %% Mathematics
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{url}      %% Hyperlinks
+\usepackage{markdown} %% Lightweight markup
+\usepackage{listings} %% Source code highlighting
+\lstset{
+  basicstyle      = \ttfamily,
+  identifierstyle = \color{black},
+  keywordstyle    = \color{blue},
+  keywordstyle    = {[2]\color{cyan}},
+  keywordstyle    = {[3]\color{olive}},
+  stringstyle     = \color{teal},
+  commentstyle    = \itshape\color{magenta},
+  breaklines      = true,
+}
+\usepackage{floatrow} %% Putting captions above tables
+\floatsetup[table]{capposition=top}
+\usepackage[babel]{csquotes} %% Context-sensitive quotation marks
+\usepackage{chngcntr}
+\counterwithout{table}{chapter}  %% Flat numbering of tables
+\counterwithout{figure}{chapter} %% Flat numbering of figures
+\begin{document}
+\makeatletter
+  \thesis@preamble %% Print the preamble.
+\makeatother
+
+
+%% The \chapter* command can be used to produce unnumbered chapters:
+\chapter*{Introduction}
+%% Unlike \chapter, \chapter* does not update the headings and does not
+%% enter the chapter to the table of contents. I we want correct
+%% headings and a table of contents entry, we must add them manually:
+\markright{\textsc{Introduction}}
+\addcontentsline{toc}{chapter}{Introduction}
+
+\chapter{Experiment Design and Hypotheses}
+In this section, I will describe the experiment design. The experiment was conducted in the Laboratory of Experimental Economics at Masaryk University. The main goal of the experiment was to test whether the possibility of cheap talk might alter the equilibrium of a game with stag-hunt-schema. Payoffs matrix of both games was the very same, only modification was the addition of sending a message with cheap-talk characteristics. This message was non-binding for the agent and binary - agents signalled action they would play play but they were not forced to actually choose it in the end. 
+
+\section{Session Methods and Characteristics}
+Both sessions were held in the Masaryk University's Economic Laboratory \footnote{\href{https://mueel.econ.muni.cz/}{MUEEL Web Page}} in November of 2022 and they consisted of exactly 22 participants. 
+
+\subsection{Stag Hunt Schema}
+
+
+\subsection{Experiment Method}
+The actual method of obtaining the information about participants' actions was a questionnaire which covered a whole pool of potential costs. This way, I was able to acquire a much richer data set which I could be further analysed. Since the participants' payoffs were determined by randomly selecting a particular round and randomly pairing them with opponent whose 
+
+\subsection{Non-Compliants detection}
+Before I proceed with the actual analysis, I would like to identify participants which apparently did not understand the instructions to a full extent. It is not a simple task as there is no simple method to be employed in this case.
+\par
+One such method could be the introduction of \emph{control questions} where participants should prove their ability to select a rational question. I decided for a different approach and as a determinant of the participants' rationality and understanding to the instructions, \par
+I have simply checked whether they have changed their action multiple multiple times through the whole cost pool. Since the probability of opponent's cost as well as her action is independent of a player's own cost and action, player should change each of his choices either 1 or 0 times. 
+
+
+
+In the following tables, I present a summary of how participants have changed their actions.
+
+\begin{table}
+\centering
+\begin{tabular}{lcr}
+\hline
+Action & Prediction & Value Counts \\
+\hline
+1 & 1 & 17 \\
+2 & 1 & 2 \\
+3 & 3 & 2 \\
+3 & 2 & 1 \\
+\hline
+\end{tabular}
+\caption{Control Group Strategy Switches}
+\end{table}
+
+In the Control Group, most of the players have changed their action once at most. For  further analysis, I will therefore use only them and drop 5 observations. I would address this step one more time in the sensitivity analysis section. 
+
+\begin{table}
+\centering
+\begin{tabular}{lcccccr}
+\hline
+ Action | A & Action | P & Prediction | A & Prediction | P & Message & Value Counts \\
+\hline
+1 & 1 & 1 & 1 & 1 & 7 \\
+1 & 1 & 1 & 1 & 0 & 3 \\
+1 & 1 & 1 & 1 & 3 & 2 \\
+0 & 0 & 0 & 1 & 0 & 1 \\
+0 & 0 & 0 & 2 & 0 & 1 \\
+1 & 0 & 1 & 0 & 0 & 1 \\
+1 & 0 & 2 & 3 & 4 & 1 \\
+1 & 1 & 1 & 2 & 0 & 1 \\
+1 & 1 & 1 & 3 & 1 & 1 \\
+1 & 1 & 3 & 2 & 2 & 1 \\
+1 & 1 & 3 & 3 & 2 & 1 \\
+2 & 0 & 3 & 2 & 1 & 1 \\
+2 & 1 & 2 & 5 & 0 & 1 \\
+\hline
+\end{tabular}
+\caption{Treatment Group Strategy Switches}
+\end{table}
+
+In the treatment group, situation is different as participants had to choose more actions and predictions. Keeping only the consistent players across all actions and predictions would significantly reduce the number of valid observations. Therefore I focus on compliance only concerning action of players. It is also questionable why do certain players have different expectations about their opponent's action than their own action, given the same cost function.
+
+\section{Control Session}
+In the control session, participants revealed their two types of action for given costs. Firstly, they revealed action they wanted to choose for the given costs. Secondly, they revealed their expectation about their opponent. Here I would like to test one of my hypotheses. Firstly whether players have valid expectations about their opponent's action. Secondly whether player tend to expect the same action from their opponent as they have selected.
+\subsection{Testing the accuracy of players' prediction}
+To test theses hypotheses, multiple approaches could be used. The most simple one would be to compare distributions of the two variables. However, this approach exhibits certain limits as it would also contain the actual 
+
+
+
+\section{Control Session}
+Participants of the control session had no possibility to communicate. Therefore only two types of information could be derived from their actions - which action they choose for given costs and which action do they expect from their opponent for the same cost. 
+\par
+In the instructions, it was clearly stated that payoffs will be determined by \emph{randomly} selected costs for both player and his opponent, hence I expect the reasoning of players to be unbiased. At this point, I would like to introduce the term \emph{strategy threshold} which simply denotes the cost for which players change either their own action or their expectation about the opponent's action.
+\par
+If the instructions were correctly written and understood by the participants, the mean value of the difference between the action and expectation should be zero.
+
+\begin{equation}
+\mu_{t_{act} = \mu_{t_{exp}}}
+\end{equation}
+ 
+ Which could be rewritten as 
+
+\begin{equation}
+\mu_{t_{act}} - \mu_{t_{exp}}\ = 0
+\end{equation}
+
+
+\par
+Firstly, which action they chose and what is their expectation about their opponent's choices. For this particular session, I have to hypotheses to test:
+\begin{enumerate}
+    \item Do players expect the very same action from their opponents for the given costs?
+    \item Are the players' actions rational for the given costs?
+    \item Are the players consistent in their choices?
+\end{enumerate}
+
+To test these hypotheses
+
+\chapter{}
+
+\end{document}
+
+
+
+

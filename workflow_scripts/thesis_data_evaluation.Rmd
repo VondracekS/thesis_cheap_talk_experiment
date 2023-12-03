@@ -1,0 +1,228 @@
+---
+title: "thesis_data_evaluation"
+author: "S Vondracek"
+date: "`r Sys.Date()`"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(lme4)
+library(flexplot)
+library(dplyr)
+library(ggplot2)
+library(xtable)
+```
+
+In this markdown, I present a comprehensive overview of results of the 
+experiment session:
+
+```{r}
+# load the data (preprocessed in python)
+experiment_simulation <- read.csv(
+  "../data/data_processed/gameplay_full_cmpliant.csv") %>% 
+  select(-"X")
+```
+
+The nature of our data breaks one of the essential assumptions imposed on 
+linear models - the independence assumption. Since we are repeatedly measuring 
+certain individuals, observed variables are inherently correlated with itself.
+For this reason, I have to take this autocorrelation into account.  
+
+# 1 Using Mixed GLM to identify the treatment effect on Pareto-equilibria 
+
+The first hypothesis I would like to test is whether the cheap-talk possibility
+increases probability that game would end up in a Pareto-equilibrium.
+
+```{r}
+experiment_simulation %>% 
+  glmer(data = ., formula = pareto ~ 1 + (1|id), family='binomial') -> baseline_pareto
+```
+
+```{r}
+experiment_simulation %>% 
+  glmer(data = ., formula = pareto ~ treatment + cost + opp +  correct + p_choices  + (1|id), 
+        family="binomial") -> logistic_pareto
+```
+```{r}
+experiment_simulation %>% 
+  group_by(treatment) %>% summarise(mean_pareto = mean(pareto)) %>% xtable()
+```
+
+
+
+```{r}
+experiment_simulation %>% 
+  group_by(treatment) %>% summarize(mean_pareto = mean(pareto))
+
+```
+
+```{r}
+qqnorm(residuals(logistic_pareto))
+```
+
+
+
+# 2 Using Mixed LM to identify treatment effect on experiment outcome 
+
+
+```{r}
+experiment_simulation %>% 
+  lmer(data = ., formula = payoff ~ 1 + (1|id)) -> baseline
+```
+
+We can observe which proportion of the variance is due to cluster effect via an
+interclass correlation
+
+
+```{r}
+icc(baseline)
+```
+The effect of clustering accounts only for about 2.8 % of all variability.
+
+
+
+```{r}
+
+model_list <- list(
+  baseline = experiment_simulation %>% lmer(data = ., formula = payoff ~ 1 + (1|id)),
+  
+  fixed_slopes_ommited = experiment_simulation %>% 
+  lmer(data = ., formula = payoff ~ treatment + cost + (1|id)),
+  
+  fixed_slopes = experiment_simulation %>% 
+  lmer(data = ., formula = payoff ~ treatment + cost + opp + (1|id)),
+  
+  fixed_slopes_full = experiment_simulation %>% 
+  lmer(data = ., formula = payoff ~ treatment + cost + opp +  correct + (1|id))
+)
+
+
+# experiment_simulation %>% 
+#   lmer(data = ., formula = payoff ~ treatment + cost + opp + (1|id)) -> fixed_slopes
+# 
+# experiment_simulation %>% 
+#   lmer(data = ., formula = payoff ~ treatment + cost + opp + (treatment|id)) -> random_slopes
+
+```
+
+
+
+
+```{r}
+library(modelsummary)
+modelsummary(model_list)
+```
+
+
+
+```{r}
+model_list$fixed_slopes_full
+```
+
+```{r}
+qqnorm(resid(model_list$fixed_slopes_full))
+
+```
+
+```{r}
+library(lmtest)
+data_frame("residuals" = resid(model_list$fixed_slopes_full),
+           "actual" = model_list$fixed_slopes_full@frame$cost) %>% 
+  ggplot(data = .,
+         aes(y=residuals, group=actual)) + geom_boxplot() + ggtitle("Fixed Slopes Model Residuals")
+
+```
+
+```{r}
+plot(model_list$fixed_slopes_full)
+```
+
+```{r}
+model.comparison(baseline, fixed_slopes)
+```
+
+```{r}
+model.comparison(baseline, random_slopes)
+```
+
+```{r}
+model.comparison(fixed_slopes, random_slopes)
+```
+
+
+```{r}
+summary(fixed_slopes)
+```
+Interpreting the results:
+- foremost the Fixed effects are of interest
+
+```{r}
+experiment_simulation %>% 
+  group_by(id) %>% summarize(p_choices = mean(p_choices),
+                             treatment = mean(treatment),
+                             payoff = mean(payoff),
+                             correct = mean(correct)) %>% 
+  lm(data = .,
+     formula = payoff ~ treatment) -> mean_lm
+```
+
+
+```{r}
+experiment_simulation %>% 
+  group_by(id) %>% summarize(p_choices = mean(p_choices),
+                             treatment = mean(treatment),
+                             payoff = mean(payoff),
+                             correct = mean(correct)) %>% 
+  ungroup() %>% 
+  ggplot(data = ., aes(x=treatment, y = payoff, colour = as.factor(treatment))) + geom_violin()
+```
+
+```{r}
+ggplot(diamonds, aes(depth, fill = cut, colour = cut)) +
+  geom_density(alpha = 0.1) +
+  xlim(55, 70)
+```
+
+
+
+
+```{r}
+summary(mean_lm)
+```
+
+
+
+```{r}
+ggplot(data = )
+```
+
+
+
+
+```{r}
+qqnorm(y=resid(mean_lm))
+```
+
+
+```{r}
+experiment_simulation %>% 
+  group_by(id, treatment) %>% slice_sample(n=50) %>% 
+lmer(data = ., formula = payoff ~ treatment + cost + (1| treatment)) -> random_slopes_sample
+
+```
+
+```{r}
+summary(random_slopes_sample)
+```
+
+
+```{r}
+experiment_simulation %>% 
+  glm(data = ., formula = )
+```
+
+
