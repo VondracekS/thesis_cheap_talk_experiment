@@ -190,7 +190,7 @@ df_actions %>%
 
 
 summary(model_actions)
-linearHypothesis(model_actions, "as.factor(variable)p_choices_cm - as.factor(variable)p_choices_ca = 0")
+linearHypothesis(model_actions, "as.factor(variable)p_choices_cm = as.factor(variable)p_choices_ca")
 
 
 modelsummary(list("model_action"=model_actions_diff, "model_pred"=model_pred_diff), 
@@ -200,7 +200,7 @@ modelsummary()
 
 qqnorm(resid(model_pred_diff))
 
-
+summary(df_actions)
   
   
 
